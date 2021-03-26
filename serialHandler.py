@@ -2,6 +2,7 @@ import sys
 import serial
 import glob
 import time
+import copy
 from threading import Thread, Lock
 
 class SerialHandler():
@@ -26,6 +27,13 @@ class SerialHandler():
             All arguments are the exact same as in pyserial 
             making this a drop-in replacement.
         """
+        self.serThread = Thread(target=self.__run)
+        self.mutex = Lock()
+        self.txbuf = None
+        self.rxbuf = None
+        self.stopFlag = False
+        self.ser = None
+
         self.port = port
         self.baudrate = baudrate
         self.bytesize = bytesize
@@ -41,14 +49,6 @@ class SerialHandler():
         
         if port != None:
             self.__setSer()
-
-        self.serThread = Thread(target=self.__run)
-        self.mutex = Lock()
-        self.txbuf = None
-        self.rxbuf = None
-        self.serPort = None
-        self.ser = None
-        self.stopFlag = False
 
     def __del__(self):
         self.stop()
@@ -131,7 +131,6 @@ class SerialHandler():
             self.mutex.release()
             self.serThread.start()
         
-    
     def stop(self):
         if self.mutex.acquire():
             self.stopFlag = True
@@ -161,7 +160,6 @@ class SerialHandler():
         
         return hasData
 
-
     def sendData(self, data):
         """
             Fills up the txbuf
@@ -179,7 +177,7 @@ class SerialHandler():
         """
         cData = ''
         if self.mutex.acquire():
-            cData = self.rxbuf
+            cData = copy.copy(self.rxbuf)
             self.rxbuf = None
             self.mutex.release()
         return cData
