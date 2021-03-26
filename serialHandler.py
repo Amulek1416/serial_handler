@@ -237,7 +237,8 @@ if __name__ == "__main__":
     ser.start()
 
     print()
-    print('Enter data to send, press enter without any data to just receive the data.')
+    print('Enter data to send and press enter.')
+    print('To only receive data, press enter with no data.')
     print('Enter \'q\' to quit.')
     print()
 
