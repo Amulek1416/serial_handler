@@ -184,7 +184,7 @@ class SerialHandler():
             self.mutex.release()
         return cData
 
-    def get_serial_ports():
+    def getAvailablePorts():
         """ 
             Lists serial port names
 
@@ -214,7 +214,7 @@ class SerialHandler():
         return result
 
 if __name__ == "__main__":
-    port = SerialHandler.get_serial_ports()
-    print(port)
+    ports = SerialHandler.getAvailablePorts()
+    print(ports)
 
     ser = SerialHandler()
