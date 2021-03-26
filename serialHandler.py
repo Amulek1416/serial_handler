@@ -50,6 +50,9 @@ class SerialHandler():
         self.ser = None
         self.stopFlag = False
 
+    def __del__(self):
+        self.stop()
+
     # PRIVATE METHODS
 
     def __setSer(self):
