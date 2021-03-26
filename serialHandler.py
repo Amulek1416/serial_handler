@@ -246,7 +246,7 @@ if __name__ == "__main__":
         data = input('Enter Send Data: ')
         ser.sendData(data)
         
-        time.sleep(0.1)
+        time.sleep(0.5) # Delay a bit to receive data if there is any
 
         if ser.isAvailable():
             print(ser.receiveData())
