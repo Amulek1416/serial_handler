@@ -215,6 +215,40 @@ class SerialHandler():
 
 if __name__ == "__main__":
     ports = SerialHandler.getAvailablePorts()
-    print(ports)
 
-    ser = SerialHandler()
+    count = 0
+    for port in ports:
+        print(str(count) + ':', port)
+        count += 1
+
+    portSelNum = int(input('\nSelect port: '))
+    while portSelNum >= len(ports):
+        print('ERROR: Invalid Selection!\n')
+        portSelNum = int(input('\nSelect port: '))
+
+    portSel = ports[portSelNum]
+    print('Selected', portSel, '\n')
+
+    baudrate = int(input('Enter Baudrate: '))
+    print('Entered', baudrate)
+
+    ser = SerialHandler(port=portSel, baudrate=baudrate)
+    ser.start()
+
+    print()
+    print('Enter data to send, press enter without any data to just receive the data.')
+    print('Enter \'q\' to quit.')
+    print()
+
+    data = ' '
+
+    while data != 'Q' and data != 'q':
+        data = input('Enter Send Data: ')
+        ser.sendData(data)
+        
+        time.sleep(0.1)
+
+        if ser.isAvailable():
+            print(ser.receiveData())
+
+    ser.stop()
