@@ -104,9 +104,9 @@ class SerialHandler():
                 return
 
             if self.rxbuf == None:
-                self.rxbuf = self.ser.read(1)
+                self.rxbuf = self.ser.read(bytesToRead)
             else:
-                self.rxbuf = self.ser.read(1)
+                self.rxbuf = self.ser.read(bytesToRead)
 
             self.mutex.release()
 
@@ -184,6 +184,7 @@ class SerialHandler():
             self.mutex.release()
         return cData
 
+    @staticmethod
     def getAvailablePorts():
         """ 
             Lists serial port names
