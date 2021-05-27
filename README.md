@@ -5,8 +5,8 @@ Library that simplifies serial communication in Python while developing simple a
 ## Supported OSs
 
 -   Windows
--   Linux (untested)
--   Mac (untested)
+-   Linux (should work, but untested)
+-   Mac (should work, but untested)
 
 ## Dependancies
 
