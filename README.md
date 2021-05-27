@@ -38,7 +38,7 @@ if ser.isAvailable(): # If data has been received
 
 ### Arduino Test Code
 
-This is can be used to test the library to ensure that the correct data is being sent and received on an arduino
+This code can be used to test the library to ensure that the correct data is being sent and received
 
 ```cpp
 
