@@ -1,6 +1,6 @@
 # serial_handler
 
-Library that simplifies serial communication in Python while developing simple applications. This is done by creating a new thread that handles the serial communication. Buffers are filled when data is ready to be sent or recieved.
+Library that simplifies serial communication in Python while developing simple applications. This is done by creating a thread that handles the serial communication. Buffers are filled when data is ready to be sent or recieved.
 
 ## Supported OSs
 
